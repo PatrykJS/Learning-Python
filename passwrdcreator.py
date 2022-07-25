@@ -1,35 +1,35 @@
 import string
 import random
-proponowane = string.digits + string.ascii_letters
+GenericPassword = string.digits + string.ascii_letters
 
 
-def tworzeniehasla():
-    print("STWÓRZ HASŁO")
-    print("Proponowane hasło: ")
-    print("" .join(random.choice(proponowane) for podane in range(14)))
+def makepasswrd():
+    print("PASSWORD CREATOR")
+    print("Suggested Password: ")
+    print("" .join(random.choice(GenericPassword) for p in range(14)))
 
-    haslo = input(str("\nPodaj nowe hasło: "))
-    if len(haslo) < 8:
-        print("Hasło jest za krótkie, minimalna ilość znaków (8)!")
-        tworzeniehasla()
+    passwrd = input(str("\nDefine new password: "))
+    if len(passwrd) < 8:
+        print("Password is to short, minimal lenght (8)!")
+        makepasswrd()
     elif haslo.isalpha():
-        print("Hasło musi zawierać przynajmniej 1 cyfre!")
-        tworzeniehasla()
+        print("Password requires at least one digit!")
+        makepasswrd()
     elif haslo.isnumeric():
-        print("haslo musi zawierac przynajmniej 1 litere!")
-        tworzeniehasla()
+        print("Password requires at least one letter!")
+        makepasswrd()
     else:
-        print("prawidłowe hasło")
+        print("Correct password")
 
-    powtorzhaslo = input("Powtórz hasło: ")
-    haslo = haslo
-    while powtorzhaslo == haslo:
-        print("Próba tworzenia hasła powiodła się!")
+    repeatpasswrd = input("Repeat password: ")
+    passwrd = passwrd
+    while repeatpasswrd == passwrd:
+        print("Password creation complete!")
         break
     else:
-        print("Hasła sie nie zgadzają, tworzenie hasła nie powiodło się")
-        tworzeniehasla()
+        print("Given passwords differ to each other, password creation failed.")
+        makepasswrd()
 
 
 if __name__ == "__passwrdcreator__":
-    tworzeniehasla()
+    makepasswrd()
