@@ -62,8 +62,3 @@ command=save)
 button1.pack(anchor=CENTER)
 
 root.mainloop()
-
-
-
-if __name__ == "__downloader__":
-    save()
