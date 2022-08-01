@@ -1,3 +1,4 @@
+from turtle import back
 from pytube import YouTube
 from tkinter import *
 
@@ -18,16 +19,18 @@ from tkinter import *
 #print("Downloading...")
 #ys.download()
 #print("Completed")
-
+#https://www.youtube.com/watch?v=3w-2gUSus34
 
 def save():
     link = entrylink.get()
     yt = YouTube(link)
     print(f"Title: {yt.title}")
     ys = yt.streams.get_highest_resolution()
-    print("Downloading...")
-    ys.download("Users\Patryk\Videos")
-    print("Completed")
+    Label(root, background="grey", text="Downloading... " + yt.title).pack()
+    ys.download("F:\YT")
+    Label(root, background="grey", text="Download completed!").pack()
+    Label(root, background="grey", text="Localisation - " + ys.download("F:\YT")).pack()
+
 
 
 root = Tk()
@@ -60,5 +63,6 @@ button1 = Button(root,
 text="OK",
 command=save)
 button1.pack(anchor=CENTER)
+
 
 root.mainloop()
