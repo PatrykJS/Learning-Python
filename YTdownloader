@@ -1,0 +1,69 @@
+from pytube import YouTube
+from tkinter import *
+
+
+#link = input("Enter youTube link: ")
+#yt = YouTube(link)
+
+#print(f"Title: {yt.title}")
+#print(f"Desc: {yt.description}")
+#print(f"Vievs: {yt.views}")
+#print(f"Video lenght: {yt.length} seconds")
+#print(f"Video streams: {yt.streams.filter(only_video=True)}")
+#print(f"Audio streams: {yt.streams.filter(only_audio=True)}")
+#print(f"Progressive streams: {yt.streams.filter(progressive=True)}")
+
+#ys = yt.streams.get_highest_resolution()
+
+#print("Downloading...")
+#ys.download()
+#print("Completed")
+
+
+def save():
+    link = entrylink.get()
+    yt = YouTube(link)
+    print(f"Title: {yt.title}")
+    ys = yt.streams.get_highest_resolution()
+    print("Downloading...")
+    ys.download("Users\Patryk\Videos")
+    print("Completed")
+
+
+root = Tk()
+root.title("YouTube Downloader")
+root.config(background="grey")
+root.geometry("600x600")
+root.resizable(False, False)
+
+label1 = Label(root,
+    text="Welcome to YouTube downloader!",
+    font=("arial fat", 25), 
+    foreground="black",
+    background="white",)
+label1.pack(anchor=CENTER)
+
+label2 = Label(root,
+    text="Insert link of the video You would want to download: ",
+    font=("arial fat", 15),
+    foreground="red",
+    background="white",)
+label2.pack(anchor=CENTER)
+
+entrylink = Entry(root,
+    width=80,
+    borderwidth=5,
+    )
+entrylink.pack(anchor=CENTER)
+
+button1 = Button(root,
+text="OK",
+command=save)
+button1.pack(anchor=CENTER)
+
+root.mainloop()
+
+
+
+if __name__ == "__downloader__":
+    save()
