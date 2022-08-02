@@ -1,6 +1,6 @@
+from tkinter.scrolledtext import ScrolledText
 from pytube import YouTube
 from tkinter import *
-
 
 #link = input("Enter youTube link: ")
 #yt = YouTube(link)
@@ -20,48 +20,70 @@ from tkinter import *
 #print("Completed")
 #https://www.youtube.com/watch?v=3w-2gUSus34
 
-def save():
+def savemp4():
     link = entrylink.get()
     yt = YouTube(link)
-    print(f"Title: {yt.title}")
     ys = yt.streams.get_highest_resolution()
-    Label(root, background="grey", text="Downloading... " + yt.title).pack()
+    Label(root, background="grey", text="Downloading... " + "''" + yt.title + "''" + ".mp4").grid()
     ys.download("F:\YT")
-    Label(root, background="grey", text="Download completed!").pack()
-    Label(root, background="grey", text="Localisation - " + ys.download("F:\YT")).pack()
+    Label(root, background="grey", text="Download completed!").grid()
+    Label(root, background="grey", text="Localisation - " + ys.download("F:\YT")).grid()
+    logi = print(f"Title: {yt.title}"), print(f"Vievs: {yt.views}"), print(f"Desc: {yt.description}")
+    a = ScrolledText(root, width=40, height=20).grid()
+    
 
+
+def savemp3():
+    link = entrylink.get()
+    yt = YouTube(link)
+    ys = yt.streams.get_audio_only()
+    Label(root, background="grey", text="Downloading... " + "''" + yt.title + "''" + ".mp3").grid()
+    ys.download("F:\YT")
+    Label(root, background="grey", text="Download completed!").grid()
+    Label(root, background="grey", text="Localisation - " + ys.download("F:\YT")).grid()
 
 
 root = Tk()
 root.title("YouTube Downloader")
 root.config(background="grey")
-root.geometry("600x600")
+root.geometry("558x600")
 root.resizable(False, False)
 
 label1 = Label(root,
     text="Welcome to YouTube downloader!",
-    font=("arial fat", 25), 
+    font=("impact", 30), 
     foreground="black",
-    background="white",)
-label1.pack(anchor=CENTER)
+    background="grey",)
+label1.grid(column=0, row=0)
 
 label2 = Label(root,
     text="Insert link of the video You would want to download: ",
-    font=("arial fat", 15),
-    foreground="red",
-    background="white",)
-label2.pack(anchor=CENTER)
+    font=("tahoma fat", 15),
+    foreground="white",
+    background="grey",)
+label2.grid()
 
 entrylink = Entry(root,
     width=80,
     borderwidth=5,
     )
-entrylink.pack(anchor=CENTER)
+entrylink.grid()
 
 button1 = Button(root,
-text="OK",
-command=save)
-button1.pack(anchor=CENTER)
+text="Download .mp4",
+width=38,
+borderwidth=3,
+command=savemp4)
+button1.grid(row=4, sticky=W)
+
+button2 = Button(root,
+text = "Download .mp3",
+width=38,
+borderwidth=3,
+command=savemp3)
+button2.grid(row=4, sticky=E)
+
+
 
 
 root.mainloop()
